@@ -13,29 +13,31 @@ public class Stub {
 
 	public static void magicLineRecursive(int[] box,int start){
 
+		//Checks if the square is magical
 		if(checkMagic(box))
 		{
 			printArray(box);
 			System.out.println();
 		}
 		else{
-				
+			//loops through all the elements of an array that will
+			//switch with a certain spot
 			for(int counter = start; counter < 9; counter ++)
 			{
-									
-					box = pushToBack(box,start,counter);
+					//swap elements
+					box = swapArray(box,start,counter);
+					//do it again with a different starting spot
 					magicLineRecursive(box,start+1);
-					box = pushToBack(box,start,counter);
+					//swap back
+					box = swapArray(box,start,counter);
 				
 			}
-
-		}
-	
+		}	
 	}
 		
 
 	public static void printArray(int[] box){
-		
+		//prints array
 		System.out.println(box[0]+" "+box[1]+" "+box[2]);
 		System.out.println(box[3]+" "+box[4]+" "+box[5]);
 		System.out.println(box[6]+" "+box[7]+" "+box[8]);
@@ -43,8 +45,8 @@ public class Stub {
 		System.out.println("");
 	}
 
-	public static int[] pushToBack(int[] array,int start,int end){
-		
+	public static int[] swapArray(int[] array,int start,int end){
+		//swaps elements of an array
  		int temp = array[end];
 		array[end] = array[start];
 		array[start] = temp;
@@ -54,6 +56,7 @@ public class Stub {
 	}
 
 	public static boolean checkMagic(int [] square) {
+		//Code borrowed from Christopher karpinski
 		
 		int [] rows = new int[8];
 		rows[0] = square[0] + square[1] + square[2];
@@ -80,11 +83,10 @@ public class Stub {
 
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//magicLine();
-		int[] bob = {1,2,3,4,5,6,7,8,9};
-		//pushToBack(bob);
-		magicLineRecursive(bob,0);
+
+		int[] numberList = {1,2,3,4,5,6,7,8,9};
+
+		magicLineRecursive(numberList,0);
 		System.out.println("done");
 	}
 
